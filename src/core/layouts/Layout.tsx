@@ -1,16 +1,24 @@
 import Head from "next/head"
-import React, {FC} from "react"
-import {BlitzLayout} from "@blitzjs/next"
+import React from "react"
+import { BlitzLayout } from "@blitzjs/next"
+import Nav from "../components/Nav"
+import styles from "src/styles/Home.module.css"
 
-const Layout: BlitzLayout<{title?: string; children?: React.ReactNode}> = ({title, children}) => {
+const Layout: BlitzLayout<{ title?: string; children?: React.ReactNode }> = ({
+  title,
+  children,
+}) => {
   return (
     <>
       <Head>
         <title>{title || "hello_dashboard"}</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
-      {children}
+      <Nav />
+      <div className={styles.globe} />
+      <div className={styles.container}>
+        <main className={styles.main}>{children}</main>
+      </div>
     </>
   )
 }

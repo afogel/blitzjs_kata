@@ -32,6 +32,8 @@
     "@prisma/client": "5.4.2",
     "@tremor/react": "3.12.1",
     "blitz": "2.0.0-beta.36",
+    "flowbite": "^2.2.1",
+    "flowbite-react": "^0.7.2",
     "next": "13.5.4",
     "prisma": "5.4.2",
     "react": "18.2.0",

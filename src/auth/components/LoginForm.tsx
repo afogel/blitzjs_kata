@@ -6,6 +6,7 @@ import login from "src/auth/mutations/login"
 import { Login } from "src/auth/schemas"
 import { useMutation } from "@blitzjs/rpc"
 import { Routes } from "@blitzjs/next"
+import { Card } from "flowbite-react"
 
 type LoginFormProps = {
   onSuccess?: (user: PromiseReturnType<typeof login>) => void
@@ -14,9 +15,7 @@ type LoginFormProps = {
 export const LoginForm = (props: LoginFormProps) => {
   const [loginMutation] = useMutation(login)
   return (
-    <div>
-      <h1>Login</h1>
-
+    <Card className="w-[20vw]">
       <Form
         submitText="Login"
         schema={Login}
@@ -40,19 +39,14 @@ export const LoginForm = (props: LoginFormProps) => {
         <LabeledTextField name="email" label="Email" placeholder="Email" />
         <LabeledTextField name="password" label="Password" placeholder="Password" type="password" />
         <div>
-          <Link href={Routes.ForgotPasswordPage()}>
-            Forgot your password?
-          </Link>
+          <Link href={Routes.ForgotPasswordPage()}>Forgot your password?</Link>
         </div>
       </Form>
 
       <div style={{ marginTop: "1rem" }}>
-        Or{" "}
-        <Link href={Routes.SignupPage()}>
-          Sign Up
-        </Link>
+        Or <Link href={Routes.SignupPage()}>Sign Up</Link>
       </div>
-    </div>
+    </Card>
   )
 }
 

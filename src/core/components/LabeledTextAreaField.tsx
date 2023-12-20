@@ -1,22 +1,20 @@
 import { forwardRef, PropsWithoutRef, ComponentPropsWithoutRef } from "react"
 import { useFormContext } from "react-hook-form"
 import { ErrorMessage } from "@hookform/error-message"
-import { Label, TextInput } from "flowbite-react"
+import { Label, Textarea } from "flowbite-react"
 
-export interface LabeledTextFieldProps extends PropsWithoutRef<JSX.IntrinsicElements["input"]> {
+export interface LabeledTextAreaFieldProps extends PropsWithoutRef<JSX.IntrinsicElements["input"]> {
   /** Field name. */
   name: string
   /** Field label. */
   label: string
   /** Field type. Doesn't include radio buttons and checkboxes */
-  type?: "text" | "password" | "email" | "number"
   outerProps?: PropsWithoutRef<JSX.IntrinsicElements["div"]>
   labelProps?: ComponentPropsWithoutRef<"label">
-  sizing?: "sm" | "md" | "lg"
 }
 
-export const LabeledTextField = forwardRef<HTMLInputElement, LabeledTextFieldProps>(
-  ({ label, outerProps, labelProps, name, sizing = "md", ...props }, ref) => {
+export const LabeledTextAreaField = forwardRef<HTMLInputElement, LabeledTextAreaFieldProps>(
+  ({ label, outerProps, labelProps, name }, ref) => {
     const {
       register,
       formState: { isSubmitting, errors },
@@ -29,9 +27,9 @@ export const LabeledTextField = forwardRef<HTMLInputElement, LabeledTextFieldPro
             {label}
           </Label>
         </div>
-        <TextInput
+        <Textarea
           disabled={isSubmitting}
-          sizing={sizing}
+          rows={4}
           helperText={
             <ErrorMessage
               render={({ message }) => (
@@ -44,11 +42,10 @@ export const LabeledTextField = forwardRef<HTMLInputElement, LabeledTextFieldPro
             />
           }
           {...register(name)}
-          {...props}
         />
       </div>
     )
   }
 )
 
-export default LabeledTextField
+export default LabeledTextAreaField
